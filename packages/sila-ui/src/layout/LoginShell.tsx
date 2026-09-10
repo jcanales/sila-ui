@@ -25,8 +25,6 @@ export interface LoginShellProps {
   onSuccess: () => void;
   initialUsername?: string;
   initialPassword?: string;
-  brandColor?: string;
-  buttonColor?: string;
 }
 
 export function LoginShell({
@@ -37,7 +35,6 @@ export function LoginShell({
   onSuccess,
   initialUsername = "",
   initialPassword = "",
-  buttonColor = "#3A6FF9",
 }: LoginShellProps) {
   const [username, setUsername] = React.useState(initialUsername);
   const [password, setPassword] = React.useState(initialPassword);
@@ -144,7 +141,6 @@ export function LoginShell({
               <Button
                 type="submit"
                 className="w-full rounded-full font-semibold"
-                style={{ backgroundColor: buttonColor }}
                 disabled={loading}
               >
                 {loading ? (

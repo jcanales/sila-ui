@@ -130,7 +130,7 @@ Props: `{ brand, topItem?, groups: SidebarNavGroup[], bottomItems?, footer?, col
 Props: `{ portalName, user?: { name, role? } | null, onLogout?, onMobileMenuToggle?, centerSlot?, startSlot?, endSlot?, showNotifications?, onNotificationsClick?, notificationsLabel?, logoutLabel? }`. Use `startSlot`/`centerSlot`/`endSlot` for app-specific additions (e.g. a language toggle) — do not fork the component to add one.
 
 ### LoginShell (`layout/LoginShell.tsx`)
-Props: `{ brandPanel?, mobileHeader?, strings: LoginShellStrings, onSubmit, onSuccess, initialUsername?, initialPassword?, brandColor?, buttonColor? }`. `strings` must supply every key in `LoginShellStrings` (see `DESIGN_SYSTEM.md`'s type reference or the type itself) — this is one of the few components with no baked-in English fallback, by design (it's meant to be fully localized per app).
+Props: `{ brandPanel?, mobileHeader?, strings: LoginShellStrings, onSubmit, onSuccess, initialUsername?, initialPassword? }`. `strings` must supply every key in `LoginShellStrings` (see the interface in `layout/LoginShell.tsx`) — this is one of the few components with no baked-in English fallback, by design (it's meant to be fully localized per app). The submit button uses `bg-primary` like any other default-variant `Button` — there is no per-instance color override; a theme swap (`theme.css` vs `theme-refresh.css`) is the supported way to change its color.
 
 ### DateRangeSelector (`filters/DateRangeSelector.tsx`)
 Props: `{ preset, dateFrom, dateTo, onPresetChange, onCustomChange, strings: DateRangeStrings }`. Pair with a `createDateStore()` instance — `preset`/`dateFrom`/`dateTo` and the two change callbacks map directly onto that store's fields/actions.
