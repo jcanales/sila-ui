@@ -21,13 +21,19 @@ See the `sila-ui-scaffold` skill's "Wiring rules" for the full rationale.
 | `--background` | `210 17% 97%` (HSL) | page background |
 | `--foreground` | `0 0% 13%` | default text |
 | `--card` | `0 0% 100%` | card surface |
+| `--card-foreground` | `0 0% 13%` | text on `--card` |
+| `--popover` | `0 0% 100%` | popover/dropdown surface |
+| `--popover-foreground` | `0 0% 13%` | text on `--popover` |
 | `--primary` | `224 93% 60%` | brand blue, `#3A6FF9` equivalent |
 | `--primary-foreground` | `0 0% 100%` | text on primary |
 | `--secondary` | `210 17% 95%` | |
+| `--secondary-foreground` | `0 0% 13%` | text on `--secondary` |
 | `--muted` | `210 17% 95%` | |
 | `--muted-foreground` | `215 16% 47%` | |
 | `--accent` | `210 17% 92%` | |
+| `--accent-foreground` | `0 0% 13%` | text on `--accent` |
 | `--destructive` | `0 72% 51%` | error red |
+| `--destructive-foreground` | `0 0% 100%` | text on `--destructive` |
 | `--border` / `--input` | `214 20% 88%` | |
 | `--ring` | `224 93% 60%` | focus ring (brand blue) |
 | `--radius` | `0.5rem` | base corner radius |
