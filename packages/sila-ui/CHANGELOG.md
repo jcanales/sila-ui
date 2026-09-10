@@ -68,3 +68,13 @@ scale — audit in a future release.
 ### LoginShell
 
 No app equivalent — ported from `jdgroup-portal-ui` as-is.
+
+### DateRangeSelector, EntitySelector
+
+`jdgroup-portal-ui`'s versions were already the correct base: generic
+(`EntitySelector<T>` vs. the apps' hardcoded `ClientSelector`), with
+strings passed as props instead of each app's own `useT()` import, and
+already using `teal-*` token classes rather than the raw hex some app code
+used elsewhere. Added the one real gap versus the apps: `focus-visible`
+ring styling and `aria-label`s on the trigger buttons, present in
+`aam-dashboard`'s forks but missing from `jdgroup-portal-ui` entirely.
