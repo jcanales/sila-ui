@@ -4,11 +4,6 @@
 <meta charset="UTF-8" />
 <title>sila-ui: Baseline vs Refresh</title>
 <style>
-  :root {
-    --bl-radius: 0.5rem; --bl-shadow-sm: 0 1px 2px rgba(0,0,0,.08); --bl-shadow-lg: 0 4px 6px -1px rgba(0,0,0,.1);
-    --rf-radius: 0.75rem; --rf-shadow-sm: 0 1px 2px rgba(15,23,42,.06), 0 1px 1px rgba(15,23,42,.04); --rf-shadow-lg: 0 8px 24px -4px rgba(15,23,42,.12), 0 4px 8px -4px rgba(15,23,42,.08);
-    --brand: #3A6FF9; --teal-800: #073b49; --teal-700: #054d60; --teal-50: #e6f4f7;
-  }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; background: #f4f6f8; color: #1f2937; padding: 24px; }
   h1 { font-size: 18px; margin: 0 0 4px; }
@@ -17,60 +12,291 @@
   @media (max-width: 900px) { .columns { grid-template-columns: 1fr; } }
   .col { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
   .col h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0 0 16px; }
-  .swatches { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-  .swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.08); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; font-size: 13px; font-weight: 500; color: #fff; background: var(--brand); border: none; cursor: default; margin-right: 8px; }
-  .btn.outline { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
-  .card-demo { border: 1px solid #e2e8f0; padding: 20px; margin-top: 16px; background: #fff; }
-  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; }
-  .kpi-value { font-size: 24px; font-weight: 700; color: #1e293b; margin: 4px 0; }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #dcfce7; color: #15803d; }
-  .baseline .btn, .baseline .card-demo { border-radius: var(--bl-radius); box-shadow: var(--bl-shadow-sm); }
-  .baseline .btn.lg-shadow { box-shadow: var(--bl-shadow-lg); }
-  .refresh .btn, .refresh .card-demo { border-radius: var(--rf-radius); box-shadow: var(--rf-shadow-sm); }
-  .refresh .btn.lg-shadow { box-shadow: var(--rf-shadow-lg); }
-  .refresh body, .refresh p { line-height: 1.6; }
+  .col h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; margin: 24px 0 8px; }
+  .col h3:first-of-type { margin-top: 0; }
   .note { font-size: 11px; color: #94a3b8; margin-top: 20px; }
+
+  /* --- Token swatches --- */
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.08); }
+
+  /*
+    Per-theme token custom properties, lifted directly from theme.css /
+    theme-refresh.css and preset.cjs. Brand hues are identical between
+    columns on purpose — only spacing/type/shadow/interaction *shape*
+    tokens differ.
+  */
+  .baseline {
+    --background: hsl(210 17% 97%);
+    --foreground: hsl(0 0% 13%);
+    --card: hsl(0 0% 100%);
+    --primary: hsl(224 93% 60%);
+    --primary-foreground: hsl(0 0% 100%);
+    --primary-active: hsl(224 93% 52%);
+    --secondary: hsl(210 17% 95%);
+    --secondary-foreground: hsl(0 0% 13%);
+    --muted-foreground: hsl(215 16% 47%);
+    --accent: hsl(210 17% 92%);
+    --accent-foreground: hsl(0 0% 13%);
+    --destructive: hsl(0 72% 51%);
+    --destructive-foreground: hsl(0 0% 100%);
+    --border: hsl(214 20% 88%);
+    --ring: hsl(224 93% 60%);
+    --radius: 0.5rem;
+    --radius-xl: calc(0.5rem + 4px);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --focus-ring: 0 0 0 2px rgb(255 255 255), 0 0 0 4px hsl(224 93% 60% / 0.5);
+    --nav-active: #093B49;
+    --line-height: 1.5;
+  }
+  .refresh {
+    --background: hsl(210 17% 97%);
+    --foreground: hsl(0 0% 13%);
+    --card: hsl(0 0% 100%);
+    --primary: hsl(224 93% 60%);
+    --primary-foreground: hsl(0 0% 100%);
+    --primary-active: hsl(224 80% 52%);
+    --secondary: hsl(210 17% 95%);
+    --secondary-foreground: hsl(0 0% 13%);
+    --muted-foreground: hsl(215 16% 47%);
+    --accent: hsl(210 17% 92%);
+    --accent-foreground: hsl(0 0% 13%);
+    --destructive: hsl(0 72% 51%);
+    --destructive-foreground: hsl(0 0% 100%);
+    --border: hsl(214 20% 88%);
+    --ring: hsl(224 93% 60%);
+    --radius: 0.75rem;
+    --radius-xl: calc(0.75rem + 4px);
+    --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 1px 0 rgb(15 23 42 / 0.04);
+    --shadow-lg: 0 8px 24px -4px rgb(15 23 42 / 0.12), 0 4px 8px -4px rgb(15 23 42 / 0.08);
+    --focus-ring: 0 0 0 2px rgb(255 255 255), 0 0 0 5px hsl(224 93% 60% / 0.35);
+    --nav-active: #093B49;
+    --line-height: 1.6;
+  }
+  .refresh p, .refresh .sample-screen { line-height: var(--line-height); }
+
+  /* --- Buttons (mirrors primitives/Button.tsx's buttonVariants) --- */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    height: 36px; padding: 0 16px; font-size: 13px; font-weight: 500;
+    border-radius: var(--radius); border: none; cursor: default; white-space: nowrap;
+  }
+  .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  .btn-default { background: var(--primary); color: var(--primary-foreground); }
+  .btn-default.pressed { background: var(--primary-active); }
+  .btn-destructive { background: var(--destructive); color: var(--destructive-foreground); }
+  .btn-outline { background: var(--background); color: var(--foreground); border: 1px solid var(--border); }
+  .btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+  .btn-ghost { background: transparent; color: var(--foreground); }
+  .btn-link { background: transparent; color: var(--primary); padding: 0; height: auto; text-decoration: underline; text-underline-offset: 4px; }
+
+  /* --- Badges (mirrors primitives/Badge.tsx's badgeVariants) --- */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 600; line-height: 1; }
+  .badge-brand { background: #3A6FF9; color: #fff; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+  .badge-danger { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  .badge-neutral { background: #f1f5f9; color: #64748b; }
+
+  /* --- Tabs (mirrors primitives/Tabs.tsx) --- */
+  .tabs-list {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--radius); background: #f1f5f9; border: 1px solid #e2e8f0;
+    padding: 3px; gap: 2px; margin-bottom: 8px;
+  }
+  .tabs-trigger {
+    display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+    border-radius: var(--radius); min-height: 34px; padding: 0 12px; font-size: 13px; font-weight: 600;
+    color: var(--muted-foreground); background: transparent;
+  }
+  .tabs-trigger.active { background: var(--nav-active); color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
+
+  /* --- Sample screen (mirrors apps/starter's DashboardPage.tsx) --- */
+  .sample-screen { background: var(--background); border-radius: var(--radius); padding: 16px; margin-top: 4px; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; margin: 0 0 8px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  @media (max-width: 500px) { .kpi-grid { grid-template-columns: 1fr; } }
+  .kpi-card {
+    background: var(--card); border: 1px solid #e2e8f0; border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm); padding: 14px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .kpi-icon { width: 32px; height: 32px; border-radius: var(--radius); background: #e6f4f7; color: #077a96; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0; }
+  .kpi-value { font-size: 20px; font-weight: 700; color: #1e293b; margin: 2px 0; }
+  .kpi-trend { font-size: 11px; font-weight: 600; color: #059669; }
+  .chart-card {
+    background: var(--card); border: 1px solid #e2e8f0; border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm); padding: 14px;
+  }
+  .chart-card h4 { font-size: 12px; font-weight: 600; color: #334155; margin: 0 0 2px; }
+  .chart-card p { font-size: 10px; color: #64748b; margin: 0 0 10px; }
+  .chart-placeholder { height: 80px; border-radius: var(--radius); background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 8px, #f8fafc 8px, #f8fafc 16px); display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 10px; }
 </style>
 </head>
 <body>
   <h1>sila-ui — Baseline vs Refresh</h1>
   <p class="sub">Same brand hues and component structure both columns — only spacing, radius, shadow, and interactive-state tokens differ.</p>
   <div class="columns">
+
     <div class="col baseline">
       <h2>Baseline (theme.css)</h2>
+
+      <h3>Tokens</h3>
       <div class="swatches">
-        <div class="swatch" style="background:#3A6FF9" title="brand-500"></div>
+        <div class="swatch" style="background:#3A6FF9" title="brand-500 / --primary"></div>
         <div class="swatch" style="background:#073b49" title="teal-800"></div>
         <div class="swatch" style="background:#077a96" title="teal-500"></div>
         <div class="swatch" style="background:#e6f4f7" title="teal-50"></div>
       </div>
-      <button class="btn" style="border-radius:0.5rem">Primary Button</button>
-      <button class="btn outline" style="border-radius:0.5rem">Outline Button</button>
-      <div class="card-demo" style="border-radius:0.5rem; box-shadow:0 1px 2px rgba(0,0,0,.08);">
-        <span class="kpi-label">Shipments</span>
-        <div class="kpi-value">1,248</div>
-        <span class="badge">+12%</span>
+
+      <h3>Button — all 6 variants</h3>
+      <div class="btn-row">
+        <button class="btn btn-default">Default</button>
+        <button class="btn btn-default pressed">Default (active)</button>
+        <button class="btn btn-destructive">Destructive</button>
       </div>
-      <p class="note">Radius: 0.5rem · Shadow: soft single-layer · Focus ring: 2px solid</p>
+      <div class="btn-row">
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-link">Link</button>
+      </div>
+
+      <h3>Badge — all 5 variants</h3>
+      <div class="badge-row">
+        <span class="badge badge-brand">Brand</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-neutral">Neutral</span>
+      </div>
+
+      <h3>Tabs — active / inactive</h3>
+      <div class="tabs-list">
+        <span class="tabs-trigger active">Overview</span>
+        <span class="tabs-trigger">Details</span>
+      </div>
+
+      <h3>Sample screen (DashboardPage layout)</h3>
+      <div class="sample-screen">
+        <p class="section-label">Key Metrics</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128666;</div>
+            <div>
+              <p class="kpi-label">Shipments</p>
+              <div class="kpi-value">1,248</div>
+              <span class="kpi-trend">&#9650; +12%</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128230;</div>
+            <div>
+              <p class="kpi-label">Inspections</p>
+              <div class="kpi-value">87</div>
+              <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128176;</div>
+            <div>
+              <p class="kpi-label">Revenue</p>
+              <div class="kpi-value">$1.4M</div>
+              <span class="kpi-trend">&#9650; +8%</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h4>Monthly Operations</h4>
+          <p>Last 12 months</p>
+          <div class="chart-placeholder">Chart placeholder</div>
+        </div>
+      </div>
+
+      <p class="note">Radius: 0.5rem (cards: 0.75rem) &middot; Shadow: Tailwind default single-layer &middot; Focus ring: 2px solid &middot; Body line-height: 1.5</p>
     </div>
+
     <div class="col refresh">
       <h2>Refresh (theme-refresh.css)</h2>
+
+      <h3>Tokens</h3>
       <div class="swatches">
-        <div class="swatch" style="background:#3A6FF9;border-radius:8px" title="brand-500 (unchanged)"></div>
+        <div class="swatch" style="background:#3A6FF9;border-radius:8px" title="brand-500 / --primary (unchanged)"></div>
         <div class="swatch" style="background:#073b49;border-radius:8px" title="teal-800 (unchanged)"></div>
         <div class="swatch" style="background:#077a96;border-radius:8px" title="teal-500 (unchanged)"></div>
         <div class="swatch" style="background:#e6f4f7;border-radius:8px" title="teal-50 (unchanged)"></div>
       </div>
-      <button class="btn" style="border-radius:0.75rem">Primary Button</button>
-      <button class="btn outline" style="border-radius:0.75rem">Outline Button</button>
-      <div class="card-demo" style="border-radius:0.75rem; box-shadow:0 8px 24px -4px rgba(15,23,42,.12), 0 4px 8px -4px rgba(15,23,42,.08); line-height:1.6;">
-        <span class="kpi-label">Shipments</span>
-        <div class="kpi-value">1,248</div>
-        <span class="badge" style="border-radius:999px">+12%</span>
+
+      <h3>Button — all 6 variants</h3>
+      <div class="btn-row">
+        <button class="btn btn-default">Default</button>
+        <button class="btn btn-default pressed">Default (active)</button>
+        <button class="btn btn-destructive">Destructive</button>
       </div>
-      <p class="note">Radius: 0.75rem · Shadow: layered elevation · Focus ring: 3px, softer opacity · Body line-height: 1.6</p>
+      <div class="btn-row">
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-link">Link</button>
+      </div>
+
+      <h3>Badge — all 5 variants</h3>
+      <div class="badge-row">
+        <span class="badge badge-brand">Brand</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-neutral">Neutral</span>
+      </div>
+
+      <h3>Tabs — active / inactive</h3>
+      <div class="tabs-list">
+        <span class="tabs-trigger active">Overview</span>
+        <span class="tabs-trigger">Details</span>
+      </div>
+
+      <h3>Sample screen (DashboardPage layout)</h3>
+      <div class="sample-screen">
+        <p class="section-label">Key Metrics</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128666;</div>
+            <div>
+              <p class="kpi-label">Shipments</p>
+              <div class="kpi-value">1,248</div>
+              <span class="kpi-trend">&#9650; +12%</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128230;</div>
+            <div>
+              <p class="kpi-label">Inspections</p>
+              <div class="kpi-value">87</div>
+              <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">&#128176;</div>
+            <div>
+              <p class="kpi-label">Revenue</p>
+              <div class="kpi-value">$1.4M</div>
+              <span class="kpi-trend">&#9650; +8%</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h4>Monthly Operations</h4>
+          <p>Last 12 months</p>
+          <div class="chart-placeholder">Chart placeholder</div>
+        </div>
+      </div>
+
+      <p class="note">Radius: 0.75rem (cards: 1rem) &middot; Shadow: layered elevation &middot; Focus ring: 3px, softer opacity &middot; Body line-height: 1.6</p>
     </div>
+
   </div>
 </body>
 </html>
