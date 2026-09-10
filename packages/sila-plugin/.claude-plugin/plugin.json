@@ -1,0 +1,9 @@
+{
+  "name": "sila-ui-kit",
+  "version": "0.1.0",
+  "description": "Scaffold and develop JD Group internal portals using the shared sila-ui design system (Tailwind preset, primitives, layout shells, store factories), and reference its exact tokens/components when generating UI code.",
+  "author": {
+    "name": "JD Group IT",
+    "email": "it@jdgroup.net"
+  }
+}
