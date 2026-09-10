@@ -84,3 +84,15 @@ ring styling and `aria-label`s on the trigger buttons, present in
 No app-level equivalents to reconcile — these only ever existed in
 `jdgroup-portal-ui` (apps build concrete store *instances* from these
 factories, they don't redefine the factories). Ported as-is.
+
+### theme.css, theme-refresh.css
+
+`theme.css` is the baseline, ported unchanged from `jdgroup-portal-ui`
+(matches `jdgroup-brandbook.md`). `theme-refresh.css` is new: same brand
+hues (`--primary`, `--background`, etc. unchanged), but `--radius` goes
+from `0.5rem` to `0.75rem`, a new `--primary-active` token darkens pressed
+buttons, `shadow-sm`/`shadow-lg` utilities get a real 3-step-feeling
+elevation treatment, body line-height loosens to 1.6, and focus rings
+widen and soften. No component code changes between themes — swapping
+`sila-ui/theme.css` for `sila-ui/theme-refresh.css` at the import site is
+the only change needed.

@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand hues unchanged from baseline — refresh only touches spacing,
+       type, shadow, and interactive-state tokens. */
+    --background: 210 17% 97%;
+    --foreground: 0 0% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+    --primary: 224 93% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 0 0% 13%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 17% 92%;
+    --accent-foreground: 0 0% 13%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 224 93% 60%;
+
+    /* Refresh: slightly larger corner radius (0.5rem -> 0.75rem). */
+    --radius: 0.75rem;
+
+    /* Refresh: a distinct pressed/active tone for primary buttons, one step
+       darker than --primary, used by primitives/Button.tsx's active state. */
+    --primary-active: 224 80% 52%;
+
+    /* Refresh: a softer, larger-spread focus ring than baseline's 2px solid. */
+    --focus-ring-width: 3px;
+    --focus-ring-opacity: 0.35;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    /* Refresh: slightly more generous body line-height than the Tailwind
+       default (1.5), for improved readability in dense dashboards. */
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    /* Refresh: a defined heading type scale + tighter tracking, instead of
+       relying on each component's ad hoc text-sm/text-2xl choices. */
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+}
+
+@layer utilities {
+  /* Refresh: a real 3-step elevation scale, replacing Tailwind's default
+     shadow-sm/shadow-lg output. Every ported component uses these two
+     utility classes already, so overriding them here changes elevation
+     everywhere without touching component source. */
+  .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 1px 0 rgb(15 23 42 / 0.04);
+  }
+  .shadow-lg {
+    box-shadow: 0 8px 24px -4px rgb(15 23 42 / 0.12), 0 4px 8px -4px rgb(15 23 42 / 0.08);
+  }
+
+  /* Refresh: softer, wider focus ring than baseline's ring-2 default. */
+  .focus-visible\:ring-2:focus-visible {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(var(--focus-ring-width) + var(--tw-ring-offset-width)) rgb(59 130 246 / var(--focus-ring-opacity));
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.sticky-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+}
