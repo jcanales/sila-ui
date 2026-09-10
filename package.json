@@ -7,6 +7,7 @@
     "apps/*"
   ],
   "scripts": {
+    "prepare": "npm run build:ui",
     "build:ui": "npm -w sila-ui run build",
     "dev:starter": "npm -w starter run dev"
   }
