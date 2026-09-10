@@ -78,3 +78,9 @@ already using `teal-*` token classes rather than the raw hex some app code
 used elsewhere. Added the one real gap versus the apps: `focus-visible`
 ring styling and `aria-label`s on the trigger buttons, present in
 `aam-dashboard`'s forks but missing from `jdgroup-portal-ui` entirely.
+
+### Store factories (createAuthStore, createDateStore, createLangStore, createT) and API client (createApiClient, createRequireAuth)
+
+No app-level equivalents to reconcile — these only ever existed in
+`jdgroup-portal-ui` (apps build concrete store *instances* from these
+factories, they don't redefine the factories). Ported as-is.
