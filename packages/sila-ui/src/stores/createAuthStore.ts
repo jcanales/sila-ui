@@ -65,7 +65,7 @@ export function createAuthStore({
               return true;
             }
 
-            if (!res.ok) return false;
+            return false;
           } catch {
             // backend unreachable — fall through to demo mode
           }
