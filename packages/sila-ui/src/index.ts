@@ -13,3 +13,9 @@ export {
   TooltipContent,
 } from "./primitives/Tooltip";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./primitives/Tabs";
+export { Dialog } from "./primitives/Dialog";
+export { AlertDialog } from "./primitives/AlertDialog";
+export { ConfirmDialog } from "./primitives/ConfirmDialog";
+export { PromptDialog } from "./primitives/PromptDialog";
+export { Badge, badgeVariants, type BadgeProps } from "./primitives/Badge";
+export { Card, CardHeader, CardContent } from "./primitives/Card";

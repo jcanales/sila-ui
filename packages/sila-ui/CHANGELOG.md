@@ -22,3 +22,10 @@ verbatim.
 app actually uses. Ported the branded version. Follow-up: `#093B49` is close
 to but not identical to the `teal-800` token (`#073b49`) — audit whether
 this should become a named token in a future release.
+
+### Dialog, AlertDialog, ConfirmDialog, PromptDialog, Badge, Card
+
+New to the design system — only existed in `duties-dashboard`, with no
+equivalent in `aam-dashboard` or `jdgroup-portal-ui`. Ported verbatim
+(focus-trap, portal rendering, and all accessibility behavior preserved),
+only correcting import paths.
