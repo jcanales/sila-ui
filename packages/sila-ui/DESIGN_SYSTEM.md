@@ -30,11 +30,11 @@ theme-refresh.css` entry for the full rationale.
 
 ## Brand color scale (both themes, from `preset.cjs`)
 
-| Scale | 500 (DEFAULT) | Full range |
-|---|---|---|
-| `brand` | `#3A6FF9` | 50–900, `brand-50` lightest to `brand-900` darkest |
-| `teal` | `#077a96` | 50–900; `teal-800` (`#073b49`) is the Sidebar background |
-| `navy` | `#073b49` (DEFAULT/800), `#054d60` (700) | alias of the darkest teal values |
+| Scale | DEFAULT | 500 | Full range |
+|---|---|---|---|
+| `brand` | `#3A6FF9` | `#3A6FF9` | 50–900, `brand-50` lightest to `brand-900` darkest |
+| `teal` | `#073b49` (= `teal-800`) | `#077a96` | 50–900; DEFAULT and 500 differ — `bg-teal`/`text-teal` resolve to `#073b49`, not `#077a96` |
+| `navy` | `#073b49` (= `teal-800`) | — (no 500 key) | only `DEFAULT`/`800`/`700` are defined |
 
 Use Tailwind classes (`bg-brand-500`, `text-teal-700`, `border-teal-800`)
 — never hardcode these hex values in new code.
