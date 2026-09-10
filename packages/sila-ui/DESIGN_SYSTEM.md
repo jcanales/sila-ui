@@ -3,6 +3,17 @@
 Machine- and human-readable reference for every token and component in
 `sila-ui@1.0.0`. Import everything from the package root: `import { Button, KpiCard, ... } from "sila-ui"`.
 
+## Tailwind setup
+
+Every visual class used by `sila-ui`'s components lives in this package's
+own source, not the consumer's. A consumer's `tailwind.config.js` must
+extend `sila-ui/preset` **and** include a `content` glob that scans the
+installed package's compiled output, or those classes get purged:
+```js
+content: ["./index.html", "./src/**/*.{ts,tsx}", "./node_modules/sila-ui/dist/**/*.js"]
+```
+See the `sila-ui-scaffold` skill's "Wiring rules" for the full rationale.
+
 ## Tokens (baseline theme, `sila-ui/theme.css`)
 
 | Token | Value | Notes |

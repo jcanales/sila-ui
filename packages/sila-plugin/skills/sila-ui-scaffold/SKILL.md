@@ -58,8 +58,26 @@ If the user just says "scaffold a portal" without specifics, default to:
 ## Wiring rules (must follow)
 
 - `tailwind.config.js` MUST extend `require('sila-ui/preset')` (or the ESM
-  `import preset from "sila-ui/preset"` form, matching `apps/starter`) and
-  add only the consumer's `content` paths.
+  `import preset from "sila-ui/preset"` form, matching `apps/starter`).
+- `tailwind.config.js`'s `content` array MUST include a glob that scans
+  `sila-ui`'s own built package, not just the consumer's own source —
+  every visual class (`bg-primary`, `rounded-lg`, `data-[state=active]:...`,
+  etc.) lives inside `sila-ui`'s component source, and Tailwind purges any
+  class it never sees in a `content` glob. Since the consumer only imports
+  the compiled `dist/`, the glob must point there:
+  ```js
+  content: [
+    "./index.html",
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/sila-ui/dist/**/*.js",
+  ]
+  ```
+  `dist/**/*.js` is correct (not `src/**/*.{ts,tsx}`) because `dist` is the
+  only compiled code actually shipped to a `file:`-linked consumer — see
+  `sila-ui/package.json`'s `files` field. (`apps/starter/tailwind.config.js`
+  instead scans `../../packages/sila-ui/src/**/*.{ts,tsx}` because it's a
+  sibling workspace member with direct access to `sila-ui`'s source — that
+  form does not apply to a new app outside this workspace.)
 - `src/index.css` MUST start with `@import 'sila-ui/theme.css';` (or
   `sila-ui/theme-refresh.css` if the user picked the refresh theme) before
   anything else.
