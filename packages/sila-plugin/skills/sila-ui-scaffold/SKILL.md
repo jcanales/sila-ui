@@ -109,10 +109,15 @@ app.
 
 ## After scaffolding
 
-1. Run `npm install` in the new app directory.
-2. Run `npm install` in `sila-ui/` (root) so workspaces link.
-3. Run `npm -w sila-ui run build` to emit the package's `dist/`.
-4. Run `npm run dev` in the new app — it should boot at
+1. Make sure `sila-ui/`'s own dependencies are installed and its `dist/`
+   is built — from the `sila-ui/` repo root, run `npm install` (its root
+   `prepare` script builds `dist/` automatically) or `npm run build:ui`
+   directly. The new app is a sibling project, not a member of `sila-ui`'s
+   npm workspaces, so this step is about `sila-ui` itself having something
+   in `dist/` to link to — it does not link the new app.
+2. Run `npm install` in the new app directory — this is what resolves the
+   `file:../sila-ui/packages/sila-ui` dependency.
+3. Run `npm run dev` in the new app — it should boot at
    http://localhost:5173 and show the login page.
 
 If `LoginPage` shows but the form errors with "Network error", that's
