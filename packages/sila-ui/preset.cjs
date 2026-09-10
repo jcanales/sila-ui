@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// Shadow/radius refresh tokens live in theme-refresh.css's @layer utilities, not here — this preset is shared by both themes unchanged.
+// Refresh-theme radius override lives in theme-refresh.css's :root block; shadow/focus-ring overrides live in its @layer utilities block — this preset is shared by both themes unchanged.
 module.exports = {
   darkMode: ["class"],
   theme: {
