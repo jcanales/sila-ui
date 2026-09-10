@@ -12,3 +12,4 @@ export {
   TooltipTrigger,
   TooltipContent,
 } from "./primitives/Tooltip";
+export { Tabs, TabsList, TabsTrigger, TabsContent } from "./primitives/Tabs";

@@ -13,3 +13,12 @@ implementation plan).
 Identical across `aam-dashboard`, `duties-dashboard`, and `jdgroup-portal-ui`
 (only import-path/semicolon differences). Ported from `jdgroup-portal-ui`
 verbatim.
+
+### Tabs
+
+`aam-dashboard` and `duties-dashboard` ship an identical branded Tabs
+(slate list, bold `#093B49` active state) that neither app sourced from
+`jdgroup-portal-ui` — whose own Tabs used unbranded shadcn defaults that no
+app actually uses. Ported the branded version. Follow-up: `#093B49` is close
+to but not identical to the `teal-800` token (`#073b49`) — audit whether
+this should become a named token in a future release.
