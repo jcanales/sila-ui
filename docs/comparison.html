@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>sila-ui: Baseline vs Refresh</title>
+<style>
+  :root {
+    --bl-radius: 0.5rem; --bl-shadow-sm: 0 1px 2px rgba(0,0,0,.08); --bl-shadow-lg: 0 4px 6px -1px rgba(0,0,0,.1);
+    --rf-radius: 0.75rem; --rf-shadow-sm: 0 1px 2px rgba(15,23,42,.06), 0 1px 1px rgba(15,23,42,.04); --rf-shadow-lg: 0 8px 24px -4px rgba(15,23,42,.12), 0 4px 8px -4px rgba(15,23,42,.08);
+    --brand: #3A6FF9; --teal-800: #073b49; --teal-700: #054d60; --teal-50: #e6f4f7;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; background: #f4f6f8; color: #1f2937; padding: 24px; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p.sub { color: #64748b; font-size: 13px; margin: 0 0 24px; }
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 900px) { .columns { grid-template-columns: 1fr; } }
+  .col { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+  .col h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0 0 16px; }
+  .swatches { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.08); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; font-size: 13px; font-weight: 500; color: #fff; background: var(--brand); border: none; cursor: default; margin-right: 8px; }
+  .btn.outline { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+  .card-demo { border: 1px solid #e2e8f0; padding: 20px; margin-top: 16px; background: #fff; }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #1e293b; margin: 4px 0; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #dcfce7; color: #15803d; }
+  .baseline .btn, .baseline .card-demo { border-radius: var(--bl-radius); box-shadow: var(--bl-shadow-sm); }
+  .baseline .btn.lg-shadow { box-shadow: var(--bl-shadow-lg); }
+  .refresh .btn, .refresh .card-demo { border-radius: var(--rf-radius); box-shadow: var(--rf-shadow-sm); }
+  .refresh .btn.lg-shadow { box-shadow: var(--rf-shadow-lg); }
+  .refresh body, .refresh p { line-height: 1.6; }
+  .note { font-size: 11px; color: #94a3b8; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <h1>sila-ui — Baseline vs Refresh</h1>
+  <p class="sub">Same brand hues and component structure both columns — only spacing, radius, shadow, and interactive-state tokens differ.</p>
+  <div class="columns">
+    <div class="col baseline">
+      <h2>Baseline (theme.css)</h2>
+      <div class="swatches">
+        <div class="swatch" style="background:#3A6FF9" title="brand-500"></div>
+        <div class="swatch" style="background:#073b49" title="teal-800"></div>
+        <div class="swatch" style="background:#077a96" title="teal-500"></div>
+        <div class="swatch" style="background:#e6f4f7" title="teal-50"></div>
+      </div>
+      <button class="btn" style="border-radius:0.5rem">Primary Button</button>
+      <button class="btn outline" style="border-radius:0.5rem">Outline Button</button>
+      <div class="card-demo" style="border-radius:0.5rem; box-shadow:0 1px 2px rgba(0,0,0,.08);">
+        <span class="kpi-label">Shipments</span>
+        <div class="kpi-value">1,248</div>
+        <span class="badge">+12%</span>
+      </div>
+      <p class="note">Radius: 0.5rem · Shadow: soft single-layer · Focus ring: 2px solid</p>
+    </div>
+    <div class="col refresh">
+      <h2>Refresh (theme-refresh.css)</h2>
+      <div class="swatches">
+        <div class="swatch" style="background:#3A6FF9;border-radius:8px" title="brand-500 (unchanged)"></div>
+        <div class="swatch" style="background:#073b49;border-radius:8px" title="teal-800 (unchanged)"></div>
+        <div class="swatch" style="background:#077a96;border-radius:8px" title="teal-500 (unchanged)"></div>
+        <div class="swatch" style="background:#e6f4f7;border-radius:8px" title="teal-50 (unchanged)"></div>
+      </div>
+      <button class="btn" style="border-radius:0.75rem">Primary Button</button>
+      <button class="btn outline" style="border-radius:0.75rem">Outline Button</button>
+      <div class="card-demo" style="border-radius:0.75rem; box-shadow:0 8px 24px -4px rgba(15,23,42,.12), 0 4px 8px -4px rgba(15,23,42,.08); line-height:1.6;">
+        <span class="kpi-label">Shipments</span>
+        <div class="kpi-value">1,248</div>
+        <span class="badge" style="border-radius:999px">+12%</span>
+      </div>
+      <p class="note">Radius: 0.75rem · Shadow: layered elevation · Focus ring: 3px, softer opacity · Body line-height: 1.6</p>
+    </div>
+  </div>
+</body>
+</html>
