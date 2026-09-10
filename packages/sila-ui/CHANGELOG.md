@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.1
+
+### Named tokens for `nav-active`, `nav-active-bg`, `focus-ring`
+
+`#093B49` (`Tabs`, `Sidebar`), `#E8F1F4` (`Sidebar`), and `#0E7490`
+(`Sidebar`, `DateRangeSelector`, `EntitySelector`) existed nowhere in
+`preset.cjs`'s color palette despite being real, deliberately-chosen values
+from the 1.0.0 reconciliation work — meaning the library shipped two
+different focus-ring colors (brand blue via `ring-ring` on `Button`/`Tabs`,
+a separate cyan via a hardcoded arbitrary value on `Sidebar`/filters) with
+no way to tell that was intentional. Added `nav-active`, `nav-active-bg`,
+and `focus-ring` to `preset.cjs`'s color palette and replaced the
+hardcoded `bg-[#093B49]`/`text-[#093B49]`/`bg-[#E8F1F4]`/`ring-[#0E7490]`
+classes in the four affected components with the new token classes. The
+existing `brand`/`teal`/`navy` scales are unchanged.
+
 ## 1.0.0
 
 Initial release. Replaces `jdgroup-portal-ui`. Every component below was
@@ -19,9 +35,9 @@ verbatim.
 `aam-dashboard` and `duties-dashboard` ship an identical branded Tabs
 (slate list, bold `#093B49` active state) that neither app sourced from
 `jdgroup-portal-ui` — whose own Tabs used unbranded shadcn defaults that no
-app actually uses. Ported the branded version. Follow-up: `#093B49` is close
-to but not identical to the `teal-800` token (`#073b49`) — audit whether
-this should become a named token in a future release.
+app actually uses. Ported the branded version. `#093B49` is close to but not
+identical to the `teal-800` token (`#073b49`) — it became its own named
+token, `nav-active`, in `1.0.1`.
 
 ### Dialog, AlertDialog, ConfirmDialog, PromptDialog, Badge, Card
 
@@ -62,8 +78,9 @@ own expanded rows used a solid brand-color fill that neither app uses. The
 collapsed icon rail keeps its existing solid-fill treatment (unchanged,
 matches all three sources). Also adopted the apps' cyan focus-ring
 (`#0E7490`) on nav links, which `jdgroup-portal-ui`'s Sidebar previously
-lacked entirely. Follow-up: `#0E7490` isn't a named token in the brand/teal
-scale — audit in a future release.
+lacked entirely. `#0E7490` and the tinted `#E8F1F4` active-row background
+weren't named tokens in the brand/teal scale — they became `focus-ring`
+and `nav-active-bg` respectively in `1.0.1`.
 
 ### LoginShell
 

@@ -69,6 +69,12 @@ module.exports = {
           800: "#073b49",
           700: "#054d60",
         },
+        // Deliberately-chosen design values from the reconciliation work that
+        // don't fit the brand/teal/navy scales — named here so components
+        // never need to hardcode them as arbitrary Tailwind values.
+        "nav-active": "#093B49",
+        "nav-active-bg": "#E8F1F4",
+        "focus-ring": "#0E7490",
       },
       borderRadius: {
         "2xl": "calc(var(--radius) + 8px)",

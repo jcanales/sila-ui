@@ -111,7 +111,7 @@ export function DateRangeSelector({
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Select date range"
-        className="flex items-center gap-1.5 min-h-[36px] px-3 rounded-lg border text-[13px] font-medium bg-white border-slate-200 text-slate-600 hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E7490] focus-visible:ring-offset-2"
+        className="flex items-center gap-1.5 min-h-[36px] px-3 rounded-lg border text-[13px] font-medium bg-white border-slate-200 text-slate-600 hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2"
       >
         <CalendarDays className="h-3.5 w-3.5 flex-shrink-0 text-slate-400" />
         <span>{buttonLabel}</span>

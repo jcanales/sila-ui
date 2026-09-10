@@ -72,7 +72,7 @@ export function EntitySelector<T>({
         className={`
           flex items-center gap-2 min-h-[36px] px-3 rounded-lg border text-[13px] font-medium
           transition-all max-w-[260px]
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E7490] focus-visible:ring-offset-2
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2
           ${
             selected
               ? "bg-teal-50 border-teal-200 text-teal-800 hover:bg-teal-100"

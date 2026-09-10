@@ -49,6 +49,17 @@ rationale.
 | `teal` | `#073b49` (= `teal-800`) | `#077a96` | 50–900; DEFAULT and 500 differ — `bg-teal`/`text-teal` resolve to `#073b49`, not `#077a96` |
 | `navy` | `#073b49` (= `teal-800`) | — (no 500 key) | only `DEFAULT`/`800`/`700` are defined |
 
+## Other named colors (`preset.cjs`, additive to the scales above)
+
+Deliberately-chosen design values that don't fit the `brand`/`teal`/`navy`
+scales. Use these classes instead of hardcoding the hex values below.
+
+| Token | Value | Class | Used by |
+|---|---|---|---|
+| `nav-active` | `#093B49` | `bg-nav-active` / `text-nav-active` | `Tabs`'s active tab state, `Sidebar`'s active nav row (expanded) |
+| `nav-active-bg` | `#E8F1F4` | `bg-nav-active-bg` | `Sidebar`'s active nav row background (expanded) |
+| `focus-ring` | `#0E7490` | `ring-focus-ring` | `Sidebar`, `DateRangeSelector`, `EntitySelector` focus-visible rings |
+
 Use Tailwind classes (`bg-brand-500`, `text-teal-700`, `border-teal-800`)
 — never hardcode these hex values in new code.
 
@@ -70,7 +81,7 @@ All native `<input>` attributes. No variants.
 Wraps Radix `Label.Root`. Use with `htmlFor`.
 
 ### Tabs / TabsList / TabsTrigger / TabsContent (`primitives/Tabs.tsx`)
-Branded active state: `data-[state=active]` renders `bg-[#093B49] text-white`. Do not restyle — this is the production look both dashboards ship.
+Branded active state: `data-[state=active]` renders `bg-nav-active text-white`. Do not restyle — this is the production look both dashboards ship.
 ```tsx
 <Tabs defaultValue="overview">
   <TabsList>
@@ -124,7 +135,7 @@ Loading placeholders matching each card's real layout. `Sk` is the base shimmer 
 Props: `{ sidebar: ReactNode, topbar: ReactNode, children: ReactNode, tooltipDelay?: number }`. The consuming app owns `collapsed`/`mobileOpen` state and passes fully-configured `<Sidebar>`/`<TopBar>` elements as the `sidebar`/`topbar` props — see `apps/starter/src/App.tsx` for the canonical pattern.
 
 ### Sidebar (`layout/Sidebar.tsx`)
-Props: `{ brand, topItem?, groups: SidebarNavGroup[], bottomItems?, footer?, collapsed, onToggle, mobileOpen?, onMobileClose?, widthExpanded?, widthCollapsed? }`. `SidebarNavGroup` is `{ key, label, icon, items: SidebarNavItem[], defaultOpen? }`; `SidebarNavItem` is `{ path, hash?, icon, label }`. Expanded active rows render with a tinted `bg-[#E8F1F4]` background, not a solid fill — do not override this.
+Props: `{ brand, topItem?, groups: SidebarNavGroup[], bottomItems?, footer?, collapsed, onToggle, mobileOpen?, onMobileClose?, widthExpanded?, widthCollapsed? }`. `SidebarNavGroup` is `{ key, label, icon, items: SidebarNavItem[], defaultOpen? }`; `SidebarNavItem` is `{ path, hash?, icon, label }`. Active-row styling differs by sidebar state: expanded rows render with a tinted `bg-nav-active-bg`/`text-nav-active` background (not a solid fill), while the collapsed icon rail renders active items with a solid `bg-brand-500` fill instead (no label to carry a tinted state against). Do not override either.
 
 ### TopBar (`layout/TopBar.tsx`)
 Props: `{ portalName, user?: { name, role? } | null, onLogout?, onMobileMenuToggle?, centerSlot?, startSlot?, endSlot?, showNotifications?, onNotificationsClick?, notificationsLabel?, logoutLabel? }`. Use `startSlot`/`centerSlot`/`endSlot` for app-specific additions (e.g. a language toggle) — do not fork the component to add one.

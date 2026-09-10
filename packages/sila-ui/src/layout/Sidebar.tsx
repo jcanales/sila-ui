@@ -34,7 +34,7 @@ export interface SidebarProps {
 }
 
 const FOCUS_RING =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E7490] focus-visible:ring-offset-2";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2";
 
 export function Sidebar({
   brand,
@@ -70,7 +70,7 @@ export function Sidebar({
       "group flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors",
       FOCUS_RING,
       isActive
-        ? "bg-[#E8F1F4] text-[#093B49] font-semibold"
+        ? "bg-nav-active-bg text-nav-active font-semibold"
         : "text-teal-100 hover:bg-teal-700 hover:text-white"
     );
 
@@ -92,7 +92,7 @@ export function Sidebar({
       "group flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors",
       FOCUS_RING,
       active
-        ? "bg-[#E8F1F4] text-[#093B49] font-semibold"
+        ? "bg-nav-active-bg text-nav-active font-semibold"
         : "text-teal-100 hover:bg-teal-700 hover:text-white"
     );
 
