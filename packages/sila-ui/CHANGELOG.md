@@ -7,3 +7,9 @@ reconciled from up to three sources: `aam-dashboard`, `duties-dashboard`,
 and the retired `jdgroup-portal-ui`. Decisions are recorded as each
 component is ported (see the entries added in later tasks of the sila-ui
 implementation plan).
+
+### Button, Input, Label, Tooltip
+
+Identical across `aam-dashboard`, `duties-dashboard`, and `jdgroup-portal-ui`
+(only import-path/semicolon differences). Ported from `jdgroup-portal-ui`
+verbatim.
