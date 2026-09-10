@@ -9,7 +9,8 @@
     "dist",
     "preset.cjs",
     "theme.css",
-    "theme-refresh.css"
+    "theme-refresh.css",
+    "DESIGN_SYSTEM.md"
   ],
   "exports": {
     ".": {

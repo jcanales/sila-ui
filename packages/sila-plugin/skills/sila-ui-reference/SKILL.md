@@ -7,8 +7,13 @@ description: Use whenever building or modifying UI in a project that consumes si
 
 This skill exists so generated UI code uses `sila-ui`'s real components and
 token values — never invented colors, spacing, or one-off component
-implementations. Read `sila-ui/packages/sila-ui/DESIGN_SYSTEM.md` in full
-before writing or modifying any JSX in a project that depends on `sila-ui`.
+implementations. Read `DESIGN_SYSTEM.md` in full before writing or
+modifying any JSX in a project that depends on `sila-ui`:
+
+- Working inside this monorepo: `packages/sila-ui/DESIGN_SYSTEM.md`
+  (repo-root-relative).
+- Working in a consumer app that installed `sila-ui` via a `file:` link:
+  `node_modules/sila-ui/DESIGN_SYSTEM.md`.
 
 ## Rules
 
