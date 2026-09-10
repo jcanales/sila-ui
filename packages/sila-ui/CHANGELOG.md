@@ -43,3 +43,28 @@ version and added the missing `shimmer` keyframe/animation to `preset.cjs`
 the shared preset — so `jdgroup-portal-ui`'s `Sk` never actually had the
 apps' polish available to it). Also ported `TableRowsSkeleton`
 (`duties-dashboard`-only, no prior equivalent).
+
+### AppShell, TopBar
+
+Only `jdgroup-portal-ui` had a generic, slot/prop-driven version of these —
+the apps' own `AppShell`/`TopBar` hardcode app-specific nav, auth, and i18n
+directly and are not design-system material. Ported `jdgroup-portal-ui`'s
+versions unchanged.
+
+### Sidebar
+
+Ported `jdgroup-portal-ui`'s prop-driven structure (nav groups/items as
+config, mobile overlay, collapse toggle, tooltip-based collapsed labels),
+but replaced the expanded-row active-state styling with the quiet
+tinted-background treatment (`bg-[#E8F1F4]`, split icon/label color) that
+`aam-dashboard` and `duties-dashboard` actually ship — `jdgroup-portal-ui`'s
+own expanded rows used a solid brand-color fill that neither app uses. The
+collapsed icon rail keeps its existing solid-fill treatment (unchanged,
+matches all three sources). Also adopted the apps' cyan focus-ring
+(`#0E7490`) on nav links, which `jdgroup-portal-ui`'s Sidebar previously
+lacked entirely. Follow-up: `#0E7490` isn't a named token in the brand/teal
+scale — audit in a future release.
+
+### LoginShell
+
+No app equivalent — ported from `jdgroup-portal-ui` as-is.
