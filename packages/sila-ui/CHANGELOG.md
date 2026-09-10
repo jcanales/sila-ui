@@ -88,14 +88,22 @@ factories, they don't redefine the factories). Ported as-is.
 ### theme.css, theme-refresh.css
 
 `theme.css` is the baseline, ported unchanged from `jdgroup-portal-ui`
-(matches `jdgroup-brandbook.md`). `theme-refresh.css` is new: same brand
-hues (`--primary`, `--background`, etc. unchanged), but `--radius` goes
-from `0.5rem` to `0.75rem`, a new `--primary-active` token darkens pressed
+(matches `jdgroup-brandbook.md`), plus a `--primary-active` token (see
+below). `theme-refresh.css` is new: same brand hues (`--primary`,
+`--background`, etc. unchanged), but `--radius` goes from `0.5rem` to
+`0.75rem`, its own one-step-darker `--primary-active` value darkens pressed
 buttons, `shadow-sm`/`shadow-lg` utilities get a real 3-step-feeling
 elevation treatment, body line-height loosens to 1.6, and focus rings
 widen and soften. No component code changes between themes — swapping
 `sila-ui/theme.css` for `sila-ui/theme-refresh.css` at the import site is
 the only change needed.
+
+### Button active state (`--primary-active`)
+
+`Button`'s `default` variant now applies `active:bg-[hsl(var(--primary-active))]`
+on press. `--primary-active` is defined in both themes (one step darker
+than each theme's own `--primary`) so the active state works identically
+regardless of which theme is active.
 
 ## Deliverables
 

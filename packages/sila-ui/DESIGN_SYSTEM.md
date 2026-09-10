@@ -31,13 +31,15 @@ See the `sila-ui-scaffold` skill's "Wiring rules" for the full rationale.
 | `--border` / `--input` | `214 20% 88%` | |
 | `--ring` | `224 93% 60%` | focus ring (brand blue) |
 | `--radius` | `0.5rem` | base corner radius |
+| `--primary-active` | `224 93% 52%` | `Button`'s `default` variant active/pressed state, one step darker than `--primary` |
 
 Refresh theme (`sila-ui/theme-refresh.css`) keeps every value above
-identical, and additionally changes: `--radius` to `0.75rem`, adds
-`--primary-active: 224 80% 52%` (button pressed state), widens/softens
-focus rings, loosens body `line-height` to `1.6`, and gives `shadow-sm`/
-`shadow-lg` a real 3-step elevation feel. See `CHANGELOG.md`'s `theme.css,
-theme-refresh.css` entry for the full rationale.
+identical except `--primary-active` (which uses the refresh's own
+one-step-darker value, `224 80% 52%`), and additionally changes: `--radius`
+to `0.75rem`, widens/softens focus rings, loosens body `line-height` to
+`1.6`, and gives `shadow-sm`/`shadow-lg` a real 3-step elevation feel. See
+`CHANGELOG.md`'s `theme.css, theme-refresh.css` entry for the full
+rationale.
 
 ## Brand color scale (both themes, from `preset.cjs`)
 

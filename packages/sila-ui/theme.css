@@ -24,6 +24,11 @@
     --input: 214 20% 88%;
     --ring: 224 93% 60%;
     --radius: 0.5rem;
+
+    /* A distinct pressed/active tone for primary buttons, one step darker
+       than --primary — matches theme-refresh.css's --primary-active pattern
+       so both themes stay symmetric. */
+    --primary-active: 224 93% 52%;
   }
 }
 
