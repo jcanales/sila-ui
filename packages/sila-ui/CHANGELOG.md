@@ -96,3 +96,8 @@ elevation treatment, body line-height loosens to 1.6, and focus rings
 widen and soften. No component code changes between themes — swapping
 `sila-ui/theme.css` for `sila-ui/theme-refresh.css` at the import site is
 the only change needed.
+
+## Deliverables
+
+- Comparison artifact: docs/comparison.html (repo file — not yet published as a separate Artifact)
+- Claude Design canvas: https://claude.ai/code/artifact/e355a052-efdb-4581-bdbb-aebb4ea847af
