@@ -29,3 +29,17 @@ New to the design system — only existed in `duties-dashboard`, with no
 equivalent in `aam-dashboard` or `jdgroup-portal-ui`. Ported verbatim
 (focus-trap, portal rendering, and all accessibility behavior preserved),
 only correcting import paths.
+
+### ChartCard, DataBanner, KpiCard, SectionLabel
+
+Only existed in `jdgroup-portal-ui` — ported as-is.
+
+### Skeletons (Sk, KpiCardSkeleton, ChartCardSkeleton, PresentationChartCardSkeleton, TableRowsSkeleton)
+
+`aam-dashboard`/`duties-dashboard` use an animated shimmer sweep;
+`jdgroup-portal-ui` used a plain `animate-pulse` block. Ported the shimmer
+version and added the missing `shimmer` keyframe/animation to `preset.cjs`
+(previously only defined in each app's own `tailwind.config.js`, never in
+the shared preset — so `jdgroup-portal-ui`'s `Sk` never actually had the
+apps' polish available to it). Also ported `TableRowsSkeleton`
+(`duties-dashboard`-only, no prior equivalent).
