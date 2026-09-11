@@ -48,6 +48,7 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --focus-ring: 0 0 0 2px rgb(255 255 255), 0 0 0 4px hsl(224 93% 60% / 0.5);
     --nav-active: #093B49;
+    --nav-active-bg: #E8F1F4;
     --line-height: 1.5;
   }
   .refresh {
@@ -72,6 +73,7 @@
     --shadow-lg: 0 8px 24px -4px rgb(15 23 42 / 0.12), 0 4px 8px -4px rgb(15 23 42 / 0.08);
     --focus-ring: 0 0 0 2px rgb(255 255 255), 0 0 0 5px hsl(224 93% 60% / 0.35);
     --nav-active: #093B49;
+    --nav-active-bg: #E8F1F4;
     --line-height: 1.6;
   }
   .refresh p, .refresh .sample-screen { line-height: var(--line-height); }
@@ -114,8 +116,26 @@
   }
   .tabs-trigger.active { background: var(--nav-active); color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
 
+  /* --- App chrome (mirrors layout/Sidebar.tsx + layout/TopBar.tsx exactly,
+     so the sample screen below sits inside the same white-sidebar/white-topbar
+     frame real screenshots show, instead of floating on a bare background) --- */
+  .app-shell { display: flex; border: 1px solid #e2e8f0; border-radius: var(--radius); overflow: hidden; margin-top: 4px; }
+  .mini-sidebar { width: 152px; flex-shrink: 0; background: #FFFFFF; border-right: 1px solid #e2e8f0; padding: 8px 6px; }
+  .mini-logo { font-size: 10px; font-weight: 700; letter-spacing: .04em; color: #073b49; padding: 4px 6px 8px; border-bottom: 1px solid #e2e8f0; margin-bottom: 6px; }
+  .mini-nav-group { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #64748b; padding: 6px 6px 3px; }
+  .mini-nav-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #334155; padding: 6px; border-radius: 6px; margin-bottom: 1px; }
+  .mini-nav-item.active { background: var(--nav-active-bg, #E8F1F4); color: var(--nav-active, #093B49); font-weight: 600; }
+  .mini-nav-icon { width: 13px; text-align: center; font-size: 11px; flex-shrink: 0; }
+  .mini-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .mini-topbar { height: 34px; background: #fff; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; box-shadow: var(--shadow-sm); flex-shrink: 0; }
+  .mini-portal-name { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #073b49; }
+  .mini-topbar-right { display: flex; align-items: center; gap: 8px; }
+  .mini-bell { font-size: 11px; color: #64748b; }
+  .mini-avatar { width: 18px; height: 18px; border-radius: 999px; background: #073b49; color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .mini-content { flex: 1; background: var(--background); padding: 12px; min-width: 0; }
+
   /* --- Sample screen (mirrors apps/starter's DashboardPage.tsx) --- */
-  .sample-screen { background: var(--background); border-radius: var(--radius); padding: 16px; margin-top: 4px; }
+  .sample-screen { margin: 0; }
   .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; margin: 0 0 8px; }
   .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
   @media (max-width: 500px) { .kpi-grid { grid-template-columns: 1fr; } }
@@ -180,43 +200,63 @@
         <span class="tabs-trigger">Details</span>
       </div>
 
-      <h3>Sample screen (DashboardPage layout)</h3>
-      <div class="sample-screen">
-        <p class="section-label">Key Metrics</p>
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128666;</div>
-            <div>
-              <p class="kpi-label">Shipments</p>
-              <div class="kpi-value">1,248</div>
-              <span class="kpi-trend">&#9650; +12%</span>
+      <h3>Sample screen (Sidebar + TopBar + DashboardPage, real chrome)</h3>
+      <div class="app-shell">
+        <aside class="mini-sidebar">
+          <div class="mini-logo">JD GROUP</div>
+          <div class="mini-nav-item active"><span class="mini-nav-icon">&#9635;</span>Dashboard</div>
+          <div class="mini-nav-group">Operations</div>
+          <div class="mini-nav-item"><span class="mini-nav-icon">&#9650;</span>IEEPA Analysis</div>
+          <div class="mini-nav-item"><span class="mini-nav-icon">&#9689;</span>Duties Breakdown</div>
+        </aside>
+        <div class="mini-main">
+          <header class="mini-topbar">
+            <span class="mini-portal-name">Trade Compliance Portal</span>
+            <div class="mini-topbar-right">
+              <span class="mini-bell">&#128276;</span>
+              <span class="mini-avatar">A</span>
+            </div>
+          </header>
+          <div class="mini-content">
+            <div class="sample-screen">
+              <p class="section-label">Key Metrics</p>
+              <div class="kpi-grid">
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128666;</div>
+                  <div>
+                    <p class="kpi-label">Shipments</p>
+                    <div class="kpi-value">1,248</div>
+                    <span class="kpi-trend">&#9650; +12%</span>
+                  </div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128230;</div>
+                  <div>
+                    <p class="kpi-label">Inspections</p>
+                    <div class="kpi-value">87</div>
+                    <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
+                  </div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128176;</div>
+                  <div>
+                    <p class="kpi-label">Revenue</p>
+                    <div class="kpi-value">$1.4M</div>
+                    <span class="kpi-trend">&#9650; +8%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-card">
+                <h4>Monthly Operations</h4>
+                <p>Last 12 months</p>
+                <div class="chart-placeholder">Chart placeholder</div>
+              </div>
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128230;</div>
-            <div>
-              <p class="kpi-label">Inspections</p>
-              <div class="kpi-value">87</div>
-              <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128176;</div>
-            <div>
-              <p class="kpi-label">Revenue</p>
-              <div class="kpi-value">$1.4M</div>
-              <span class="kpi-trend">&#9650; +8%</span>
-            </div>
-          </div>
-        </div>
-        <div class="chart-card">
-          <h4>Monthly Operations</h4>
-          <p>Last 12 months</p>
-          <div class="chart-placeholder">Chart placeholder</div>
         </div>
       </div>
 
-      <p class="note">Radius: 0.5rem (cards: 0.75rem) &middot; Shadow: Tailwind default single-layer &middot; Focus ring: 2px solid &middot; Body line-height: 1.5</p>
+      <p class="note">Radius: 0.5rem (cards: 0.75rem) &middot; Shadow: Tailwind default single-layer &middot; Focus ring: 2px solid &middot; Body line-height: 1.5 &middot; Sidebar/TopBar chrome verified byte-for-byte against duties-dashboard's live source</p>
     </div>
 
     <div class="col refresh">
@@ -258,43 +298,63 @@
         <span class="tabs-trigger">Details</span>
       </div>
 
-      <h3>Sample screen (DashboardPage layout)</h3>
-      <div class="sample-screen">
-        <p class="section-label">Key Metrics</p>
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128666;</div>
-            <div>
-              <p class="kpi-label">Shipments</p>
-              <div class="kpi-value">1,248</div>
-              <span class="kpi-trend">&#9650; +12%</span>
+      <h3>Sample screen (Sidebar + TopBar + DashboardPage, real chrome)</h3>
+      <div class="app-shell">
+        <aside class="mini-sidebar">
+          <div class="mini-logo">JD GROUP</div>
+          <div class="mini-nav-item active"><span class="mini-nav-icon">&#9635;</span>Dashboard</div>
+          <div class="mini-nav-group">Operations</div>
+          <div class="mini-nav-item"><span class="mini-nav-icon">&#9650;</span>IEEPA Analysis</div>
+          <div class="mini-nav-item"><span class="mini-nav-icon">&#9689;</span>Duties Breakdown</div>
+        </aside>
+        <div class="mini-main">
+          <header class="mini-topbar">
+            <span class="mini-portal-name">Trade Compliance Portal</span>
+            <div class="mini-topbar-right">
+              <span class="mini-bell">&#128276;</span>
+              <span class="mini-avatar">A</span>
+            </div>
+          </header>
+          <div class="mini-content">
+            <div class="sample-screen">
+              <p class="section-label">Key Metrics</p>
+              <div class="kpi-grid">
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128666;</div>
+                  <div>
+                    <p class="kpi-label">Shipments</p>
+                    <div class="kpi-value">1,248</div>
+                    <span class="kpi-trend">&#9650; +12%</span>
+                  </div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128230;</div>
+                  <div>
+                    <p class="kpi-label">Inspections</p>
+                    <div class="kpi-value">87</div>
+                    <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
+                  </div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-icon">&#128176;</div>
+                  <div>
+                    <p class="kpi-label">Revenue</p>
+                    <div class="kpi-value">$1.4M</div>
+                    <span class="kpi-trend">&#9650; +8%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-card">
+                <h4>Monthly Operations</h4>
+                <p>Last 12 months</p>
+                <div class="chart-placeholder">Chart placeholder</div>
+              </div>
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128230;</div>
-            <div>
-              <p class="kpi-label">Inspections</p>
-              <div class="kpi-value">87</div>
-              <span class="kpi-trend" style="color:#dc2626">&#9660; -3%</span>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">&#128176;</div>
-            <div>
-              <p class="kpi-label">Revenue</p>
-              <div class="kpi-value">$1.4M</div>
-              <span class="kpi-trend">&#9650; +8%</span>
-            </div>
-          </div>
-        </div>
-        <div class="chart-card">
-          <h4>Monthly Operations</h4>
-          <p>Last 12 months</p>
-          <div class="chart-placeholder">Chart placeholder</div>
         </div>
       </div>
 
-      <p class="note">Radius: 0.75rem (cards: 1rem) &middot; Shadow: layered elevation &middot; Focus ring: 3px, softer opacity &middot; Body line-height: 1.6</p>
+      <p class="note">Radius: 0.75rem (cards: 1rem) &middot; Shadow: layered elevation &middot; Focus ring: 3px, softer opacity &middot; Body line-height: 1.6 &middot; Sidebar/TopBar chrome verified byte-for-byte against duties-dashboard's live source</p>
     </div>
 
   </div>

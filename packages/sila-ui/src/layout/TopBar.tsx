@@ -58,7 +58,7 @@ export function TopBar({
         {endSlot}
         {showNotifications && (
           <button
-            className="p-1.5 rounded hover:bg-slate-100 transition-colors"
+            className="flex items-center justify-center h-9 w-9 rounded hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E7490] focus-visible:ring-offset-2"
             aria-label={notificationsLabel}
             onClick={onNotificationsClick}
           >
