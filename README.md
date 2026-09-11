@@ -20,6 +20,32 @@ portals and reference the design system while writing UI code.
   that imports `sila-ui` via a `file:` link. Mirror its conventions when
   scaffolding a new app by hand.
 
+## Two themes, one component set
+
+`packages/sila-ui/theme.css` (baseline) and `theme-refresh.css` (refresh)
+target the exact same components — only spacing/radius/shadow/interactive-state
+tokens differ; brand colors are identical in both. A consuming app picks a
+theme by importing one stylesheet or the other:
+
+```css
+@import "sila-ui/theme.css";        /* or */
+@import "sila-ui/theme-refresh.css";
+```
+
+See `docs/comparison.html` for a side-by-side (open it directly in a
+browser — no build step) and `packages/sila-ui/DESIGN_SYSTEM.md` for the
+full token/component reference.
+
+## Status
+
+v1.0.0. Replaces `portal-kit`/`jdgroup-portal-ui`, reconciled from
+`aam-dashboard`, `duties-dashboard`, and the old `portal-ui` (see
+`packages/sila-ui/CHANGELOG.md` for per-component provenance). Neither
+`aam-dashboard`/`duties-dashboard` nor `portal-kit` itself have been
+migrated to consume this package yet — that's follow-up work, not done
+here. This repo is local-only for now: no git remote configured, not
+published to any npm registry.
+
 ## Getting started
 
 ```bash
